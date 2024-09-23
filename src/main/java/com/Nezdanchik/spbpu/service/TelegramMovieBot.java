@@ -17,7 +17,7 @@ import java.text.ParseException;
 public class TelegramMovieBot extends TelegramLongPollingBot {
 
     private final BotConfig botConfig;
-
+    private final MovieService movieService;
 
     @Override
     public String getBotUsername() {
@@ -44,7 +44,7 @@ public class TelegramMovieBot extends TelegramLongPollingBot {
                     break;
                 default:
                     try {
-                        movie = MovieService.getMovie(messageText, filmModel);
+                        movie = movieService.getMovie(messageText, filmModel);
 
                     } catch (IOException e) {
                         sendMessage(chatId, "We have not found such a movie");
