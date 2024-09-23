@@ -1,8 +1,7 @@
 package com.Nezdanchik.spbpu.config;
 
-import com.Nezdanchik.spbpu.service.MovieBot;
+import com.Nezdanchik.spbpu.service.TelegramMovieBot;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -12,25 +11,20 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Component
 public class BotInit {
-    private final BotConfig botConfig;
-    private AnnotationConfigApplicationContext context;
+    private final TelegramMovieBot telegramMovieBot;
 
     @Autowired
-    public BotInit(BotConfig botConfig, AnnotationConfigApplicationContext context) {
-        this.botConfig = botConfig;
-        this.context = context;
+    public BotInit(TelegramMovieBot telegramMovieBot) {
+        this.telegramMovieBot = telegramMovieBot;
     }
 
     @EventListener({ContextRefreshedEvent.class})
     public void init() throws TelegramApiException {
-        MovieBot bot = context.getBean(MovieBot.class);
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-
         try {
-            telegramBotsApi.registerBot(bot);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
+            telegramBotsApi.registerBot(telegramMovieBot);
+        } catch (TelegramApiException ignored) {
         }
-
     }
 }
+
