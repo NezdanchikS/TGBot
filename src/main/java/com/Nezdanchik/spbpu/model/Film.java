@@ -1,13 +1,23 @@
 package com.Nezdanchik.spbpu.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
-@Entity
 @Table(name = "films")
 public class Film {
 
@@ -31,4 +41,5 @@ public class Film {
     private Double rating;
 
     // Поле для отслеживания просмотра пользователем будет в WatchlistItem
+
 }

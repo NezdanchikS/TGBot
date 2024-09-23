@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
-@Service
+//@Service
 @AllArgsConstructor
 public class TelegramMovieBot extends TelegramLongPollingBot {
 
@@ -37,7 +37,12 @@ public class TelegramMovieBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        FilmModel filmModel = new FilmModel();
+        FilmModel filmModel = FilmModel.builder()
+                .id(1L)
+                .year(2003)
+                .nameRu("Виктор Кострубов документальный фильм о рождении гения")
+                .description("Ну собственно фильм о том насколько Кострубов Виктор Константинович (признанный гений современности (в целом умный человек (а ещё очень скромный))) действительно умён и всякое такое")
+                .build();
 
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();

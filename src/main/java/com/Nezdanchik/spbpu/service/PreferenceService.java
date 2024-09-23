@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 public class PreferenceService {
 
