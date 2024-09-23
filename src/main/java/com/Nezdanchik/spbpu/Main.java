@@ -26,8 +26,8 @@ public class Main {
         MongoClient mongoClient = context.getBean(MongoClient.class);
         var collection = mongoClient.getDatabase("admin").getCollection("new_collection");
 //        collection.
-        collection.updateOne(Filters.eq("_id", 2L), updateDBOject(createFilmModel()));
-//        collection.insertOne(createDBObject(createFilmModel()));
+//        collection.updateOne(Filters.eq("_id", 2L), updateDBOject(createFilmModel()));
+        collection.insertOne(createDBObject(createFilmModel()));
         System.out.println(collection);
         // Регистрация бота вручную
 //        try {
@@ -62,8 +62,8 @@ public class Main {
         return FilmModel.builder()
                 .id(5L)
                 .year(2003)
-                .nameRu("Виктор Кострубов документальный фильм о рождении гения")
-                .description("Ну собственно фильм о том насколько Кострубов Виктор Константинович (признанный гений современности (в целом умный человек (а ещё очень скромный))) действительно умён и всякое такое")
+                .nameRu("name")
+                .description("description")
                 .ratingKinopoisk(1112.)
                 .build();
     }
